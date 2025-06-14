@@ -1,0 +1,131 @@
+body {
+  margin: 0;
+  font-family: "Arial", sans-serif;
+  background: #f7f7f7;
+  color: #333;
+}
+
+header {
+  background: #2c3e50;
+  color: white;
+  padding: 15px 0;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav a {
+  color: white;
+  margin-left: 15px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav .hotline {
+  background: #e67e22;
+  padding: 8px 12px;
+  border-radius: 5px;
+}
+
+.hero {
+  background: url("https://i.imgur.com/yRhKf7p.jpg") center/cover no-repeat;
+  color: white;
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.hero h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.btn-primary {
+  background: #27ae60;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.intro,
+.services,
+.contact {
+  background: white;
+  padding: 40px 20px;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+.intro ul {
+  list-style: none;
+  padding: 0;
+}
+
+.intro li {
+  margin-bottom: 10px;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.card {
+  flex: 1;
+  min-width: 200px;
+  background: #ecf0f1;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+form {
+  display: grid;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+form input,
+form textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+form button {
+  background: #3498db;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+footer {
+  background: #34495e;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+}
+
+.welcome-box {
+  isolation: isolate;
+  overflow: hidden;
+  align-items: center;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  border-radius: 32px;
+  box-shadow: inset 0 -7px 11px #a48fff1f;
+  display: flex;
+
+  position: relative;
+  width: -moz-max-content;
+  width: max-content;
+  transition: 0.45s, cubic-bezier(0.6, 0.6, 0, 1) box-shadow;
+}
