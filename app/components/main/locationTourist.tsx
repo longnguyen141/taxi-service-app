@@ -1,8 +1,8 @@
 "use client";
+import { fadeIn } from "@/utils/motions";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import React from "react";
-import { motion } from "framer-motion";
-import { slideInFromLeft, slideInFromTop } from "@/utils/motions";
 
 function LocationTourist() {
   const animation = (e: React.MouseEvent) => {
@@ -22,15 +22,21 @@ function LocationTourist() {
   return (
     <motion.div initial="hidden" animate="visible">
       <motion.div
-        variants={slideInFromTop(1)}
-        className=" w-full flex items-center justify-center text-white"
+        variants={fadeIn("down", 0.3)}
+        initial="hidden"
+        whileInView={"show"}
+        viewport={{ once: false, amount: 0.6 }}
+        className=" w-full flex items-center justify-center text-title"
       >
-        <h1 className="h2 text-title text-4xl text-center">
-          Hành trình du lịch thêm phần trọn vẹn với dịch vụ xe chất lượng.
+        <h1 className="h2 uppercase text-title text-2xl lg:w-full w-[90%] lg:text-3xl text-center">
+          Hành trình du lịch thêm phần trọn vẹn với dịch vụ xe chất lượng
         </h1>
       </motion.div>
       <motion.div
-        variants={slideInFromLeft(0.5)}
+        variants={fadeIn("down", 0.3)}
+        initial="hidden"
+        whileInView={"show"}
+        viewport={{ once: false, amount: 0.6 }}
         className="grid lg:h-[100vh] h-[60vh] place-items-center"
       >
         <div className="flex gap-[0.15rem] p-[0.5rem]">

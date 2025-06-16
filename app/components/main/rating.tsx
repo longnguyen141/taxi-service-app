@@ -13,6 +13,8 @@ const StarRating: React.FC<StarRatingProps> = ({ rating }) => {
   const half = rating % 1 >= 0.5 ? 1 : 0;
   const empty = 5 - full - half;
 
+  console.log("log star", rating);
+
   Array(full)
     .fill(null)
     .forEach((_, i) =>

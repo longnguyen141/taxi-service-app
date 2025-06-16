@@ -1,0 +1,32 @@
+.loading-element {
+  animation: 1.5s spin ease infinite;
+}
+
+.loading-element.small {
+  width: 4.75em;
+}
+
+.loading-element.medium {
+  width: 10.75em;
+}
+
+.loading-element.large {
+  width: 15.75em;
+}
+
+.ring {
+  fill: none;
+  stroke: #e5e7eb;
+  stroke-width: 2;
+}
+
+.ball {
+  fill: #facc15;
+  stroke: none;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

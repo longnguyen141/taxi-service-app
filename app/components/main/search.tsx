@@ -14,12 +14,12 @@ function Search() {
       animate="visible"
       className={`${
         searchActive
-          ? "bg-white rounded-none md-h-[80px]"
-          : "bg-white w-full lg:h-[120px]"
+          ? "bg-[#fef3c7] shadow-2xl rounded-none md-h-[80px]"
+          : "bg-[#fef3c7] shadow-2xl w-full lg:h-[120px]"
       } hidden lg:block w-full shadow-lg transition-all duration-100`}
     >
       <div className="lg:h-full flex items-center px-6 lg:px-0">
-        {/* <LocationSelection /> */}
+        <LocationSelection />
       </div>
     </motion.div>
   );

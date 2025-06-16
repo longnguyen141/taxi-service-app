@@ -1,70 +1,49 @@
 "use client";
 
-import React, { useContext, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
 import { motion } from "framer-motion";
+import { useContext } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 // slide css
 import "swiper/css";
-import "swiper/css/pagination";
 import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 // // slide module
-import { Pagination, Navigation, Autoplay } from "swiper/modules";
-import Image from "next/image";
-import Taxi1 from "../../../public/hero1.jpg";
-import Taxi2 from "../../../public/hero2.jpg";
-import Taxi3 from "../../../public/hero3.jpg";
-import Search from "./search";
-import { SearchContext } from "@/app/context/searchContext";
-import { slideInFromLeft, slideInFromTop } from "@/utils/motions";
-import { Link } from "react-scroll";
-import { useMediaQuery } from "react-responsive";
 import { menuContext } from "@/app/context/menuContext";
+import { SearchContext } from "@/app/context/searchContext";
+import { fadeIn } from "@/utils/motions";
+import Image from "next/image";
+import { Link } from "react-scroll";
+import Search from "./search";
 
 function Hero() {
   const { searchActive } = useContext(SearchContext);
   const { setMenuActive } = useContext(menuContext);
-  const desktopMode = useMediaQuery({
-    query: "(min-width: 1300px)",
-  });
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  const textVariants = [
-    {
-      hidden: { opacity: 0, x: -100 },
-      visible: { opacity: 1, x: 0 },
-    },
-    {
-      hidden: { opacity: 0, y: 50 },
-      visible: { opacity: 1, y: 0 },
-    },
-    {
-      hidden: { opacity: 0, x: 100 },
-      visible: { opacity: 1, x: 0 },
-    },
-  ];
+  // const desktopMode = useMediaQuery({
+  //   query: "(min-width: 1300px)",
+  // });
 
   const slides = [
     {
       title: "Dịch vụ taxi an toàn & tiện lợi",
       description:
         "Chúng tôi cam kết đưa bạn đến nơi an toàn, đúng giờ và thoải mái.",
-      image: Taxi1,
+      image: "/location3.jpg",
     },
     {
       title: "Đặt xe dễ dàng chỉ với một cú chạm",
       description: "Ứng dụng thông minh giúp bạn gọi xe mọi lúc, mọi nơi.",
-      image: "/hero2.jpg",
+      image: "/location2.jpg",
     },
     {
       title: "Đội ngũ tài xế chuyên nghiệp",
       description: "Lịch sự – Nhiệt tình – Tận tâm – Phục vụ 24/7.",
-      image: "/hero3.jpg",
+      image: "/location6.jpg",
     },
   ];
   return (
-    <section className="pt-20 w-full bg-[#b2b7c2]/10" id="home">
+    <section className="pt-20 w-ful bg-white" id="home">
       <div className="container mx-auto h-full lg:pt-10">
         {/* <Swiper
           navigation={true}
@@ -204,33 +183,43 @@ function Hero() {
                 />
 
                 {/* Overlay */}
-                <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/60 to-transparent"></div>
 
                 {/* Content */}
                 <div className="absolute inset-0 flex items-center justify-center px-6 text-white text-center">
                   <motion.div
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.7 }}
+                    key={index}
+                    // initial={"hidden"}
+                    // animate={
+                    //   activeIndex === index
+                    //     ? { opacity: 1, y: 0 }
+                    //     : { opacity: 0, y: 50 }
+                    // }
+                    // transition={{ duration: 0.3 }}
+                    // whileInView={"show"}
+                    // viewport={{ once: false, amount: 0.6 }}
+                    // variants={slideInFromTop(1)}
+                    variants={fadeIn("down", 0.3)}
+                    initial="hidden"
+                    whileInView={"show"}
+                    viewport={{ once: false, amount: 0.6 }}
                     className="max-w-2xl"
                   >
-                    <h1 className="text-3xl md:text-5xl font-bold mb-4">
-                      {slide.title}
-                    </h1>
-                    <p className="text-lg md:text-xl mb-6">
-                      {slide.description}
-                    </p>
-                    <Link
-                      smooth={desktopMode}
-                      spy={true}
-                      offset={-80}
-                      duration={1200}
-                      onClick={() => setMenuActive("contact")}
-                      to="contact"
-                      className="bg-yellow-400 text-black font-semibold px-6 py-3 rounded-full shadow-md hover:bg-yellow-300 transition"
-                    >
-                      Liên hệ ngay
-                    </Link>
+                    <div className="bg-black/50 p-6 rounded-xl max-w-2xl backdrop-blur-sm">
+                      <h1 className="text-3xl md:text-5xl font-bold mb-4 text-white drop-shadow-lg">
+                        {slide.title}
+                      </h1>
+                      <p className="text-lg md:text-xl mb-6 text-white drop-shadow-md">
+                        {slide.description}
+                      </p>
+                      <Link
+                        onClick={() => setMenuActive("contact")}
+                        to="contact"
+                        className="bg-yellow-400 text-black font-semibold px-6 py-3 rounded-full shadow-md hover:bg-yellow-300 transition"
+                      >
+                        Liên hệ ngay
+                      </Link>
+                    </div>
                   </motion.div>
                 </div>
               </div>
@@ -238,55 +227,15 @@ function Hero() {
           ))}
         </Swiper>
       </div>
-      {/* {searchActive ? (
-        <div className="fixed top-[92px] z-20 w-full max-w-[1920px]">
+      {searchActive ? (
+        <div className="fixed top-[77px] z-20 w-full max-w-[1920px]">
           <Search />
         </div>
       ) : (
         <div className=" w-full  mx-auto">
           <Search />
         </div>
-      )} */}
-
-      {/* <div className="container">
-        <h2>Dịch vụ taxi an toàn – nhanh chóng – đúng giờ</h2>
-        <a href="#contact" className="btn-primary">
-          🚕 Đặt xe ngay
-        </a>
-      </div> */}
-      {/* 
-      <Swiper
-        pagination={{
-          type: "progressbar",
-        }}
-        navigation={true}
-        modules={[Pagination, Navigation]}
-        className="mySwiper"
-      >
-        <SwiperSlide>
-          <Image
-            className="w-full object-contain h-[520px]"
-            src={Taxi1}
-            alt={"hero 1"}
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          {" "}
-          <Image
-            className="w-full object-contain h-[520px]"
-            src={Taxi2}
-            alt={"hero 2"}
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          {" "}
-          <Image
-            className="w-full object-contain h-[520px]"
-            src={Taxi3}
-            alt={"hero 3"}
-          />
-        </SwiperSlide>
-      </Swiper> */}
+      )}
     </section>
   );
 }

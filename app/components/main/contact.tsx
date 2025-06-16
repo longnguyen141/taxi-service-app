@@ -17,7 +17,6 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Dữ liệu gửi:", formData);
     // Gửi dữ liệu qua API hoặc dịch vụ email ở đây
     alert("Cảm ơn bạn đã liên hệ!");
     setFormData({ name: "", email: "", message: "", phone: "" });
@@ -44,7 +43,7 @@ const Contact = () => {
     // </div>
     <div
       id="contact"
-      className="bg-white py-16 px-6 md:px-16 max-w-3xl mx-auto scroll-mt-[500px]"
+      className="bg-white py-16 px-6 md:px-16 max-w-3xl mx-auto scroll-mt-[110px]"
     >
       <h2 className="text-3xl font-bold mb-8 text-center text-gray-800">
         Liên hệ với chúng tôi

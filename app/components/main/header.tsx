@@ -3,7 +3,7 @@ import { menuContext } from "@/app/context/menuContext";
 import { SearchContext } from "@/app/context/searchContext";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 import { BiMenuAltRight, BiX } from "react-icons/bi";
 // import { useMediaQuery } from "react-responsive";
@@ -15,37 +15,6 @@ function Header() {
   const { menuActive, setMenuActive } = useContext(menuContext);
 
   const { setSearchActive } = useContext(SearchContext);
-
-  console.log(menuActive, "menu");
-
-  const router = useRouter();
-
-  // const goToSection = (section: string) => {
-  //   router.push(`/#${section}`);
-  // };
-
-  const goToSection = (section: string) => {
-    const currentPath = window.location.pathname;
-
-    if (currentPath !== "/") {
-      // Nếu đang ở trang khác, chuyển về trang chính có hash
-      router.push(`/#${section}`);
-    } else {
-      // Nếu đang ở trang chủ, scroll trực tiếp
-      const el = document.getElementById(section);
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth" });
-      } else {
-        // Nếu chưa có phần tử, đợi một chút rồi scroll
-        setTimeout(() => {
-          const el = document.getElementById(section);
-          if (el) {
-            el.scrollIntoView({ behavior: "smooth" });
-          }
-        }, 1000);
-      }
-    }
-  };
 
   // useEffect(() => {
   //   if (router.asPath.includes("#")) {
@@ -88,19 +57,18 @@ function Header() {
   return (
     <header
       className={`${
-        header ? "bg-white shadow-md py-2 " : "bg-transparent shadow-none"
+        header ? "bg-white shadow-md" : "bg-white shadow-none"
       } fixed w-full max-w-[1920px] mx-auto z-50 transition-all duration-300 `}
     >
-      <div className="lg:container mx-auto flex flex-col lg:flex-row lg:items-center lg:justify-around">
+      <div className="lg:container shadow-2xl mx-auto flex flex-col lg:flex-row lg:items-center lg:justify-around">
         <div className="flex justify-between items-center px-4 py-2">
           <Link
             // to="home"
             href="/#home"
-            onClick={() => goToSection("home")}
-            // smooth={desktopMode}
-            // spy={true}
-            // offset={-180}
-            // duration={1200}
+            onClick={() => {
+              window.location.href = "/#home";
+              setMenuActive("home");
+            }}
             className={`cursor-pointer text-xl font-medium ${
               menuActive === "home" ? "active" : ""
             }`}
@@ -134,44 +102,31 @@ function Header() {
         >
           <Link
             href={"/#home"}
-            className={`cursor-pointer text-xl font-medium ${
+            className={`cursor-pointer text-xl font-bold ${
               menuActive === "home" ? "active" : ""
             }`}
-            // to="home"
-            // activeClass="active"
-            // smooth={desktopMode}
-            // onClick={() => goToSection("/#home")}
             onClick={() => {
+              window.location.href = "/#home";
               setMenuActive("home");
-              goToSection("home");
             }}
-            // spy={true}
-            // offset={-180}
-            // duration={1200}
           >
             Trang chủ
           </Link>
           <Link
-            className={`cursor-pointer text-xl font-medium ${
+            className={`cursor-pointer text-xl font-bold ${
               menuActive === "services" ? "active" : ""
             }`}
             // to="services"
             href="/#services"
             onClick={() => {
+              window.location.href = "/#services";
               setMenuActive("services");
-              goToSection("services"); // ✅ truyền đúng chuỗi
             }}
-            // onClick={() => setMenuActive("services")}
-            // activeClass="active"
-            // smooth={desktopMode}
-            // spy={true}
-            // offset={-250}
-            // duration={1200}
           >
             Dịch vụ
           </Link>
           <Link
-            //  className={`cursor-pointer text-xl font-medium ${
+            //  className={`cursor-pointer text-xl font-bold ${
             //     menuActive === "services" ? "active" : ""
             //   }`}
             //   // to="services"
@@ -180,12 +135,13 @@ function Header() {
             //     setMenuActive("services");
             //     goToSection("services"); // ✅ truyền đúng chuỗi
             //   }}
-            className={`cursor-pointer text-xl font-medium ${
+            className={`cursor-pointer text-xl font-bold ${
               menuActive === "contact" ? "active" : ""
             }`}
             // to="contact"
             // activeClass="active"
             onClick={() => {
+              window.location.href = "/#contact";
               setMenuActive("contact");
               // goToSection("contact"); // ✅ truyền đúng chuỗi
             }}
@@ -196,19 +152,16 @@ function Header() {
             Liên hệ
           </Link>
           <Link
-            className={`cursor-pointer text-xl font-medium ${
+            className={`cursor-pointer text-xl font-bold ${
               menuActive === "sale" ? "active" : ""
             }`}
             // to="sale"
             // activeClass="active"
             onClick={() => {
+              window.location.href = "/#sale";
               setMenuActive("sale");
-              goToSection("sale"); // ✅ truyền đúng chuỗi
+              // goToSection("sale"); // ✅ truyền đúng chuỗi
             }}
-            // smooth={desktopMode}
-            // spy={true}
-            // offset={-180}
-            // duration={1200}
             href="#sale"
           >
             Thông tin khuyến mãi

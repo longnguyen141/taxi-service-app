@@ -1,8 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-import { usePathname } from "next/navigation";
-
 import About from "./components/main/about";
 import Standard from "./components/main/standard";
 import Contact from "./components/main/contact";
@@ -11,49 +9,36 @@ import Hero from "./components/main/hero";
 import Service from "./components/main/service";
 import LocationTourist from "./components/main/locationTourist";
 import RevviewList from "./components/main/revviewList";
+import ScrollToTopButton from "./components/main/scrollToTopButton";
+import CallButton from "./components/callButton";
 
 export default function Home() {
-  // const pathname = usePathname();
-
-  // useEffect(() => {
-  //   if (typeof window !== "undefined") {
-  //     const hash = window.location.hash;
-  //     if (hash) {
-  //       const id = hash.substring(1);
-  //       const el = document.getElementById(id);
-  //       if (el) {
-  //         setTimeout(() => {
-  //           el.scrollIntoView({ behavior: "smooth" });
-  //         }, 200); // Chờ 1 chút để DOM render
-  //       }
-  //     }
-  //   }
-  // }, [pathname]);
-
   useEffect(() => {
-    const scrollToHash = () => {
+    if (typeof window !== "undefined") {
       const hash = window.location.hash;
       if (hash) {
-        const id = hash.replace("#", "");
+        const id = hash.substring(1);
         const el = document.getElementById(id);
         if (el) {
-          el.scrollIntoView({ behavior: "smooth" });
+          setTimeout(() => {
+            el.scrollIntoView({ behavior: "smooth" });
+          }, 300);
         }
       }
-    };
-
-    // Lần đầu load
-    scrollToHash();
-
-    // Mỗi lần hash thay đổi
-    window.addEventListener("hashchange", scrollToHash);
-
-    return () => {
-      window.removeEventListener("hashchange", scrollToHash);
-    };
+    }
   }, []);
+
+  useEffect(() => {
+    const id = window.location.hash.substring(1);
+
+    setTimeout(() => {
+      const el2 = document.getElementById(id);
+      if (el2) el2.scrollIntoView({ behavior: "smooth" });
+    }, 500);
+  }, []);
+
   return (
-    <main className="max-w-[1920px] bg-white mx-auto relative overflow-hidden">
+    <main className="max-w-[1920px] bg-white mx-auto relative overflow-x-hidden">
       <Hero />
       <About />
       <LocationTourist />
@@ -63,6 +48,8 @@ export default function Home() {
       <Service />
       <Contact />
       <Footer />
+      <ScrollToTopButton />
+      <CallButton />
     </main>
   );
 }

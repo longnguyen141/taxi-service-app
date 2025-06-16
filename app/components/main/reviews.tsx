@@ -6,25 +6,28 @@ import StarRating from "./rating";
 
 interface paramReview {
   name: string;
-  avatar: string;
-  message: string;
+  image: string;
+  comment: string;
   location: string;
-  star: number;
+  rating: number;
+  id: string;
 }
 
-function Reviews({ message, name, avatar, location, star }: paramReview) {
+function Reviews({ comment, name, image, location, rating, id }: paramReview) {
   return (
-    <motion.div className="swiper-slide w-[90%]">
+    <motion.div key={id} className="swiper-slide w-[90%]">
       <div className="flex flex-col justify-center items-center mx-auto h-full">
-        <FaQuoteLeft className="text-7xl text-title mb-6" />
-        <p className="text-2xl lg:text-3xl max-w-[874px] mb-12 font-medium">
-          {message}
+        <FaQuoteLeft className="lg:text-7xl text-5xl text-title mb-6" />
+        <p className="lg:max-h-[145px] lg:min-h-[145px] text-md log:text-xl max-w-[874px] mb-4 font-medium line-clamp-6 text-start px-4">
+          {comment}
         </p>
-        <StarRating rating={star} />
+        <div className="mb-4">
+          <StarRating rating={rating} />
+        </div>
         <Image
-          className="rounded-[50%]"
+          className="rounded-[50%] object-cover card-image"
           alt="avatar review"
-          src={avatar}
+          src={image || "/logo.png"}
           width={64}
           height={64}
         />
